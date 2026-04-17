@@ -1,0 +1,337 @@
+{
+  "meta": {
+    "run_id": "f3a2b1c4-8d9e-4f5a-b6c7-d8e9f0a1b2c3",
+    "timestamp": "2026-04-16T06:14:22.341Z",
+    "target_url": "https://en.giesswein.com/",
+    "duration_ms": 14320,
+    "tokens_used": 3840,
+    "compliance_rules_source": [
+      "https://secureprivacy.ai/blog/cookie-consent-requirements"
+    ],
+    "self_healing_events": [
+      {
+        "timestamp": 1713247462.1,
+        "element": "reject_button",
+        "level": "PRIMARY",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "success": false
+      },
+      {
+        "timestamp": 1713247462.4,
+        "element": "reject_button",
+        "level": "SECONDARY",
+        "selector": "[data-cookiebotdialogbodybuttondecline]",
+        "success": false
+      },
+      {
+        "timestamp": 1713247462.8,
+        "element": "reject_button",
+        "level": "HEURISTIC_1",
+        "selector": "button:has-text(/decline|reject|refuse/i)",
+        "success": true
+      }
+    ],
+    "errors": [],
+    "cmp_detected": "Cookiebot",
+    "cmp_profile_key": "cookiebot"
+  },
+  "compliance_rules": {
+    "prior_blocking_required": true,
+    "explicit_consent_required": true,
+    "reject_button_required": true,
+    "equal_choice_required": true,
+    "granular_consent_required": true,
+    "consent_withdrawal_required": true,
+    "consent_mode_v2_required": true,
+    "pre_ticked_boxes_forbidden": true,
+    "implied_consent_forbidden": true,
+    "consent_valid_duration_months": 12
+  },
+  "test_contexts_run": [
+    "fresh_visitor",
+    "returning_accepted",
+    "returning_rejected",
+    "expired_consent"
+  ],
+  "deterministic": {
+    "pre_consent_cookies": {
+      "_ga": "GA1.1.1234567890.1713247400",
+      "_gcl_au": "1.1.987654321.1713247400"
+    },
+    "reject_button_found": true,
+    "accept_button_found": true,
+    "consent_mode_v2": {
+      "detected": true,
+      "default_state": {
+        "consent": "default",
+        "ad_storage": "granted",
+        "analytics_storage": "granted"
+      },
+      "ad_storage_default_denied": false
+    },
+    "fourth_parties": {
+      "domains": {
+        "consent.cookiebot.com": {
+          "category": "CMP",
+          "loaded_by": "direct",
+          "is_fourth_party": false,
+          "request_count": 3
+        },
+        "google-analytics.com": {
+          "category": "analytics",
+          "loaded_by": "googletagmanager.com",
+          "is_fourth_party": true,
+          "request_count": 2
+        },
+        "doubleclick.net": {
+          "category": "advertising",
+          "loaded_by": "googletagmanager.com",
+          "is_fourth_party": true,
+          "request_count": 4
+        }
+      },
+      "new_since_baseline": [],
+      "fourth_parties": [
+        "google-analytics.com",
+        "doubleclick.net"
+      ]
+    },
+    "axe_violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "description": "Elements must have sufficient color contrast",
+        "nodes": 1
+      },
+      {
+        "id": "button-name",
+        "impact": "critical",
+        "description": "Buttons must have discernible text",
+        "nodes": 1
+      }
+    ],
+    "contrast_ratios": {
+      "reject_ratio": 2.84,
+      "accept_ratio": 7.21,
+      "ratio_diff": 4.37,
+      "wcag_aa_reject": false,
+      "wcag_aa_accept": true
+    },
+    "cross_browser": {
+      "Desktop Firefox": {
+        "banner_found": true,
+        "reject_found": true,
+        "pre_consent_cookies": {
+          "_ga": "GA1.2.111.1713247400"
+        },
+        "banner_format": "banner"
+      },
+      "Desktop Safari": {
+        "banner_found": true,
+        "reject_found": true,
+        "pre_consent_cookies": {},
+        "banner_format": "banner"
+      },
+      "iPhone 14": {
+        "banner_found": true,
+        "reject_found": true,
+        "pre_consent_cookies": {
+          "_ga": "GA1.1.222.1713247400"
+        },
+        "banner_format": "banner"
+      },
+      "Pixel 7": {
+        "banner_found": true,
+        "reject_found": true,
+        "pre_consent_cookies": {
+          "_ga": "GA1.1.333.1713247400"
+        },
+        "banner_format": "banner"
+      }
+    },
+    "score": 0.5,
+    "penalty_breakdown": [
+      {
+        "check": "pre_consent_cookies",
+        "weight": 0.4,
+        "detail": "Tracking cookies before consent: ['_ga', '_gcl_au']",
+        "critical": true
+      },
+      {
+        "check": "consent_mode_v2_incorrect",
+        "weight": 0.2,
+        "detail": "Consent Mode v2 detected but ad_storage not denied by default",
+        "critical": false
+      }
+    ],
+    "banner_format": "banner"
+  },
+  "ai_evaluations": {
+    "compliance": {
+      "score": 1,
+      "violations": [
+        {
+          "rule": "GDPR Article 5(1)(a) \u2014 lawfulness",
+          "severity": "critical",
+          "finding": "Google Analytics (_ga) and Google Ads (_gcl_au) cookies are set before any consent interaction, constituting unlawful processing.",
+          "evidence": "pre_consent_cookies: ['_ga', '_gcl_au'] detected at page load",
+          "confidence": 0.97,
+          "source_evaluator": "compliance"
+        },
+        {
+          "rule": "GDPR Recital 32 \u2014 Consent Mode v2",
+          "severity": "high",
+          "finding": "Consent Mode v2 defaults ad_storage to 'granted' rather than 'denied', transmitting ad signals before consent is given.",
+          "evidence": "dataLayer default push: ad_storage=granted, analytics_storage=granted",
+          "confidence": 0.95,
+          "source_evaluator": "compliance"
+        }
+      ],
+      "dark_patterns_detected": [
+        "asymmetric_visual_weight"
+      ],
+      "compliant": false,
+      "confidence": 0.96,
+      "reasoning": "Two critical violations detected: pre-consent tracking and incorrect Consent Mode v2 defaults. The banner structure is present but the technical implementation fires non-essential cookies before user interaction.",
+      "tokens_used": 1240,
+      "evaluator": "compliance"
+    },
+    "accessibility": {
+      "score": 3,
+      "violations": [
+        {
+          "rule": "WCAG 2.1 1.4.3 \u2014 Contrast (Minimum)",
+          "severity": "serious",
+          "finding": "Reject button contrast ratio 2.84:1 falls below WCAG AA minimum of 4.5:1, creating a visual accessibility barrier.",
+          "evidence": "reject_ratio: 2.84 (measured), wcag_aa_reject: false",
+          "confidence": 0.99,
+          "source_evaluator": "accessibility"
+        },
+        {
+          "rule": "WCAG 2.1 4.1.2 \u2014 Name, Role, Value",
+          "severity": "critical",
+          "finding": "One button element lacks a discernible accessible name, preventing screen reader users from understanding its purpose.",
+          "evidence": "axe-core: button-name violation, 1 node",
+          "confidence": 0.98,
+          "source_evaluator": "accessibility"
+        }
+      ],
+      "keyboard_navigable": true,
+      "screen_reader_compatible": false,
+      "confidence": 0.94,
+      "reasoning": "Banner is keyboard navigable but has critical screen reader accessibility issue. Reject button fails WCAG contrast minimum.",
+      "tokens_used": 980,
+      "evaluator": "accessibility"
+    },
+    "ux": {
+      "score": 2,
+      "violations": [
+        {
+          "rule": "EDPB Dark Pattern \u2014 Unequal visual weight",
+          "severity": "high",
+          "finding": "Accept button contrast ratio (7.21) is 4.37 points higher than reject button (2.84), creating asymmetric visual prominence that nudges users toward acceptance.",
+          "evidence": "contrast ratio_diff: 4.37",
+          "confidence": 0.92,
+          "source_evaluator": "ux"
+        }
+      ],
+      "accept_reject_prominence_equal": false,
+      "confidence": 0.89,
+      "reasoning": "The contrast ratio asymmetry between accept and reject buttons constitutes an EDPB-defined dark pattern. Reject is visually deprioritised despite being legally required to be equally prominent.",
+      "tokens_used": 870,
+      "evaluator": "ux"
+    },
+    "geo": {
+      "score": 2,
+      "violations": [
+        {
+          "rule": "GDPR \u2014 opt-in requirement for EU visitors",
+          "severity": "critical",
+          "finding": "EU (Germany) visitor is tracked before consent, violating the opt-in requirement under GDPR.",
+          "evidence": "pre_consent_cookies detected for EU geo context",
+          "confidence": 0.97,
+          "source_evaluator": "geo"
+        }
+      ],
+      "correct_law_applied": false,
+      "confidence": 0.95,
+      "reasoning": "The banner exists but technical implementation violates GDPR opt-in requirement for EU visitors. Pre-consent tracking is the primary failure.",
+      "tokens_used": 750,
+      "evaluator": "geo"
+    }
+  },
+  "voting": {
+    "scores_per_evaluator": {
+      "compliance": 1,
+      "accessibility": 3,
+      "ux": 2
+    },
+    "confidences_per_evaluator": {
+      "compliance": 0.96,
+      "accessibility": 0.94,
+      "ux": 0.89
+    },
+    "weighted_score": 0.336,
+    "mean_confidence": 0.93,
+    "confidence": 0.93,
+    "compliance_vetoed": true,
+    "score_spread": 2,
+    "human_review_required": true,
+    "disagreement_details": [
+      {
+        "type": "score_spread",
+        "spread": 2,
+        "scores": {
+          "compliance": 1,
+          "accessibility": 3,
+          "ux": 2
+        },
+        "note": "evaluators disagree significantly \u2014 human review needed"
+      }
+    ],
+    "all_violations": [],
+    "critical_count": 3,
+    "high_count": 2
+  },
+  "self_healing": {
+    "used": true,
+    "events": [],
+    "strategy": "HEURISTIC_1"
+  },
+  "final": {
+    "score": 0.434,
+    "deterministic_score": 0.5,
+    "ai_score": 0.336,
+    "confidence": 0.93,
+    "status": "FAIL",
+    "risk": "CRITICAL",
+    "pipeline_action": "BLOCK",
+    "human_review_required": true,
+    "compliance_vetoed": true,
+    "deterministic_penalties": [
+      {
+        "check": "pre_consent_cookies",
+        "weight": 0.4,
+        "detail": "Tracking cookies before consent: ['_ga', '_gcl_au']",
+        "critical": true
+      }
+    ],
+    "critical_violations": [
+      {
+        "rule": "GDPR Article 5(1)(a) \u2014 lawfulness",
+        "severity": "critical",
+        "finding": "Google Analytics and Google Ads cookies set before consent",
+        "confidence": 0.97,
+        "source_evaluator": "compliance"
+      }
+    ],
+    "reasoning_trace": [
+      "Deterministic failures: pre_consent_cookies",
+      "Compliance evaluator veto triggered",
+      "Human review required \u2014 low confidence or disagreement",
+      "Critical: [compliance] Google Analytics (_ga) and Google Ads (_gcl_au) cookies are set before any consent interaction"
+    ],
+    "geo_context_applied": "EU_Germany",
+    "duration_ms": 14320
+  }
+}

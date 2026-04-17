@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-python.black-formatter",
+    "charliermarsh.ruff",
+    "cucumberopen.cucumber-official",
+    "ms-azuretools.vscode-docker",
+    "ms-azure-devops.azure-pipelines",
+    "redhat.vscode-yaml",
+    "eamodio.gitlens"
+  ]
+}

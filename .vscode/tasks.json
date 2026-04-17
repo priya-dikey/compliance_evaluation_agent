@@ -1,0 +1,60 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup: create venv + install deps",
+      "type": "shell",
+      "command": "python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && playwright install --with-deps chromium firefox webkit",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Run: QA Agent (fast)",
+      "type": "shell",
+      "command": "source .venv/bin/activate && .venv/bin/python orchestrator.py --url https://en.giesswein.com/--fast",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run: QA Agent (full)",
+      "type": "shell",
+      "command": "source .venv/bin/activate && .venv/bin/python orchestrator.py --url https://en.giesswein.com/",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "View: latest report",
+      "type": "shell",
+      "command": "cat reports/report.json | python -m json.tool | less",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Lint: ruff check",
+      "type": "shell",
+      "command": "source .venv/bin/activate && .venv/bin/ruff check .",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

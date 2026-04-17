@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run QA Agent (fast)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/bin/python3",
+      "program": "${workspaceFolder}/orchestrator.py",
+      "args": [
+        "--url",
+        "https://en.giesswein.com/",
+        "--fast"
+      ],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "Run QA Agent (full)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/bin/python3",
+      "program": "${workspaceFolder}/orchestrator.py",
+      "args": [
+        "--url",
+        "https://en.giesswein.com/"
+      ],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "Debug: evaluation.py",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/bin/python3",
+      "program": "${workspaceFolder}/evaluation.py",
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

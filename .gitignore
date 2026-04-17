@@ -1,0 +1,15 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+reports/report.json
+reports/report.html
+reports/report_*.json
+reports/report_*.html
+reports/baseline.json
+reports/healing_cache.json
+.pytest_cache/
+*.egg-info/
+dist/
+build/
