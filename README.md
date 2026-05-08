@@ -1,6 +1,6 @@
-# Hybrid QA Agent — Cookie Consent Compliance
+# A multi-model compliance evaluation agent — Cookie Consent Compliance
 
-AI-powered QA agent that combines deterministic Playwright testing with
+AI-powered multi-model compliance evaluation agent that combines deterministic Playwright testing with
 Claude-based compliance reasoning to audit cookie consent banners against
 GDPR Art.5/7, WCAG 2.1 AA, and EDPB dark pattern guidelines.
 
